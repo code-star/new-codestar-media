@@ -52,7 +52,7 @@ def process(input_svg, output_folder):
             for element_id in ["codestar", "tagline"]:
                 element = root.find(f".//*[@id='{element_id}']")
                 if element is not None:
-                    element.set("fill", "white")
+                    element.set("fill", bg_color)
 
         output_dir = (
             output_folder
