@@ -1,5 +1,5 @@
-![](./logos/png/dark/tagline/opaque/logo_orange_dark_tagline@2x.png#gh-dark-mode-only)
-![](./logos/png/light/tagline/opaque/logo_orange_light_tagline@2x.png#gh-light-mode-only)
+![](./logos/png/dark/tagline/transparent/logo_orange_dark_transparent_tagline@2x.png#gh-dark-mode-only)
+![](./logos/png/light/tagline/transparent/logo_orange_light_transparent_tagline@2x.png#gh-light-mode-only)
 
 ---
 
