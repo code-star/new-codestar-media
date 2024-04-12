@@ -4,7 +4,7 @@
       transform-box: fill-box;
       transform-origin: center;
       animation:
-        colors 14s steps(1, end) infinite,
+        colors 28s steps(1, end) infinite,
         rotate 4s ease-in-out infinite;
     }
 
