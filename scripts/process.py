@@ -35,18 +35,18 @@ def process(input_svg, output_folder):
             if not show_tagline:
                 root.remove(tagline)
                 root.set("viewBox", "-50 -50 100 17.5")
-                root.set("height", "17.5")
+                root.set("height", "175")
 
         if show_background:
             root.set("style", f"background-color: {bg_color if theme == 'light' else '#000000'};")
             if show_tagline:
                 root.set("viewBox", "-60 -60 120 45")
-                root.set("width", "120")
-                root.set("height", "45")
+                root.set("width", "1200")
+                root.set("height", "450")
             else:
                 root.set("viewBox", "-60 -60 120 37.5")
-                root.set("width", "120")
-                root.set("height", "37.5")
+                root.set("width", "1200")
+                root.set("height", "375")
 
         if theme == "dark":
             for element_id in ["codestar", "tagline"]:
