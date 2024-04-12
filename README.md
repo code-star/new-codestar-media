@@ -1,5 +1,5 @@
-![](./animated_dark.svg#gh-dark-mode-only)
-![](./animated_light.svg#gh-light-mode-only)
+![](./animated/animated_dark.svg#gh-dark-mode-only)
+![](./animated/animated_light.svg#gh-light-mode-only)
 
 ---
 
