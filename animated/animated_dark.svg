@@ -5,7 +5,7 @@
       transform-origin: center;
       animation:
         colors 28s steps(1, end) infinite,
-        rotate 4s ease-in-out infinite;
+        rotate 4s 2.5s ease-in-out infinite;
     }
 
     @keyframes colors {
