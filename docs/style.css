@@ -2,6 +2,16 @@
 
 @import url('https://fonts.cdnfonts.com/css/conduit-itc-medium');
 
+@font-face {
+    font-family: "Conduit";
+    src: url("./fonts/ConduitITCStd.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Conduit";
+    font-weight: bold;
+    src: url("./fonts/ConduitITCStd-Bold.woff") format("woff");
+}
 
 :root {
     --tp-base-font-family: "Conduit ITC Medium";
@@ -37,14 +47,14 @@ body.dark {
     background-color: black;
 }
 
-#star {
+#star, #back {
     max-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: left;
 }
 
-#star svg {
+#star svg, #back svg {
     height: 100vh;
 }
 
