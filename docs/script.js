@@ -12,10 +12,6 @@ function mulberry32(a) {
     }
 }
 
-let seed = 1337;
-let rng = mulberry32(seed);
-let animateRng = mulberry32(seed);
-
 const pane = new Pane({
   title: 'Code star factory',
   expanded: true,
@@ -29,9 +25,14 @@ const default_params = {
     arc_probability: 0.3,
     animate: true,
     dark: false,
+    seed: 1337,
+    name: "<YOUR NAME>",
 };
 
 const params = { ...default_params };
+
+let rng = mulberry32(params.seed);
+let animateRng = mulberry32(params.seed);
 
 let random = 0;
 
@@ -116,12 +117,23 @@ f3.addBinding(params, "animate", { label: "Animate" });
 
 f3.addBinding(params, "dark", { label: "Dark mode" });
 
+const nameParam = f3.addBinding(params, "name", { label: "Name" });
+
+const seedParam = f3.addBinding(params, "seed", {
+    label: "Seed",
+    format: (v) => v.toFixed(0),
+});
+
 const regenerate = f3.addButton({
-  title: 'Regenerate'
+  title: 'Randomize seed'
 });
 
 const download = f3.addButton({
   title: 'Download SVG'
+});
+
+const downloadParams = f3.addButton({
+    title: "Export parameters",
 });
 
 reset.on("click", () => {
@@ -152,20 +164,32 @@ randomize2.on("click", () => {
 
 regenerate.on("click", () => {
     draw.clear();
-    seed = Math.floor(rng() * 100000);
+    params.seed = Math.floor(rng() * 100000);
+    seedParam.refresh();
     codestar();
 });
 
-download.on("click", () => {
-    const svg = draw.svg().replace("&nbsp;", "&#160;");
-    var svgBlob = new Blob([svg], {type:"image/svg+xml;charset=utf-8"});
-    var svgUrl = URL.createObjectURL(svgBlob);
-    var link = document.createElement("a");
-    link.href = svgUrl;
-    link.download = name + ".svg";
+function downloadBlob(content, filename, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
+}
+
+download.on("click", () => {
+    const svg = draw.svg().replace("&nbsp;", "&#160;");
+    downloadBlob(svg, name + ".svg", "image/svg+xml;charset=utf-8");
+});
+
+downloadParams.on("click", () => {
+    const json = JSON.stringify(params);
+    console.log(json);
+    downloadBlob(json, params.name + ".json", "text/json;charset=utf-8");
 });
 
 // Adapted from https://lospec.com/palette-list/japanese-woodblock
@@ -357,7 +381,7 @@ const setups = [
 ];
 
 function codestar() {
-    rng = mulberry32(seed);
+    rng = mulberry32(params.seed);
 
     if (params.dark) {    
         document.body.classList.add("dark");
