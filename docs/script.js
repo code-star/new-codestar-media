@@ -106,7 +106,7 @@ const reset = f2.addButton({
 });
 
 const randomize2 = f2.addButton({
-  title: 'Randomize composition'
+  title: 'Randomize probabilities'
 });
 
 const f3 = pane.addFolder({
