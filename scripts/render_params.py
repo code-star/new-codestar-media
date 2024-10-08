@@ -58,7 +58,7 @@ def render_params(json_path):
             params = json.load(f)
 
         params["animate"] = False
-        params["dark"] = False
+        # params["dark"] = False
 
         js_content = scripts_file.read_text()
         new_params_line = f"const params = {json.dumps(params)};"
