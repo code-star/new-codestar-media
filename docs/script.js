@@ -88,17 +88,17 @@ const f2 = pane.addFolder({
 
 f2.addBinding(
     params, "ion_probability",
-    { min: 0, max: 1.0, label: "Ion probability" }
+    { min: 0, max: 1.0, step: 0.01, label: "Ion probability" }
 );
 
 f2.addBinding(
     params, "particle_density",
-    { min: 0, max: 1.0, label: "Density" }
+    { min: 0, max: 1.0, step: 0.01, label: "Density" }
 );
 
 f2.addBinding(
     params, "arc_probability",
-    { min: 0, max: 1.0, label: "Arc probability" }
+    { min: 0, max: 1.0, step: 0.01, label: "Arc probability" }
 );
 
 const reset = f2.addButton({
