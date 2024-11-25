@@ -210,8 +210,8 @@ const c = () => params.color < 0 ? colors[random] : colors[params.color];
 const b = () => params.dark ? bgcolor: "black";
 
 function crosshairs() {
-    draw.line(-100, 0, 100, 0).stroke({ color: c, width: 0.1 });
-    draw.line(0, -100, 0, 100).stroke({ color: c, width: 0.1 });
+    draw.line(-100, 0, 100, 0).stroke({ color: "black", width: 0.1 });
+    draw.line(0, -100, 0, 100).stroke({ color: "black", width: 0.1 });
 
     const radii = [6, 16, 30, 40];
     for (let i = 0; i < radii.length; ++i) {
@@ -330,9 +330,9 @@ function logo() {
         .fill({ color: b() })
         .center(0, 44);
     g.text("a sopra steria team")
-        .font({ family: "Conduit ITC Medium", size: 5 })
+        .font({ family: "Conduit ITC Medium", size: 4.3 })
         .fill({ color: b() })
-        .center(14.3, 52);
+        .center(16, 52);
     return g;
 }
 
@@ -410,6 +410,7 @@ function codestar() {
 
     asterisk(0, 0);
     logo();
+    // crosshairs();
     animate(asterisk(-20.3, 45.5));
     
     const r = circles[circles.length - 1] + 3;
