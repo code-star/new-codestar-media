@@ -207,7 +207,7 @@ const bgcolor = "#f1e7da";
 
 const c = () => params.color < 0 ? colors[random] : colors[params.color];
 
-const b = () => params.dark ? bgcolor: "black";
+const b = () => params.dark ? bgcolor : "black";
 
 function crosshairs() {
     draw.line(-100, 0, 100, 0).stroke({ color: "black", width: 0.1 });

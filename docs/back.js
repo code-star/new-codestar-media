@@ -16,7 +16,7 @@ function sumAsciiValues(str) {
     return [...str].reduce((sum, char) => sum + char.charCodeAt(0), 0);
 }
 
-const default_params = { color: 0, name: "tenchi" };
+const default_params = { color: 0, name: "tenchi", dark: false };
 
 const params = { ...default_params };
 
@@ -36,7 +36,7 @@ const colors = [
 const bgcolor = "#f1e7da";
 
 const c = colors[params.color];
-const b = bgcolor;
+const fg = params.dark ? bgcolor : "black";
 
 function asterisk(x, y, f, fill) {
     f = f === undefined ? 1 : f;
@@ -51,17 +51,17 @@ function logo() {
     const g = draw.group();
     g.text("c  de.star")
         .font({ family: "Righteous", size: 19 })
-        .fill({ color: "black" })
+        .fill({ color: fg })
         .center(0, -42);
     g.text("a sopra steria team")
         .font({ family: "Conduit ITC Medium", size: 8 })
-        .fill({ color: "black" })
+        .fill({ color: fg })
         .center(14.3, -31);
     return g;
 }
 
 function dot(g, x, y, w, options) {
-    options = { fill: "black", accent: false, round: false, ...options };
+    options = { fill: fg, accent: false, round: false, ...options };
     const { fill, accent, round } = options;
     const stroke = w * 0.3
     if (!round) {
@@ -70,7 +70,7 @@ function dot(g, x, y, w, options) {
         g
             .circle(fill === "transparent" ? w - stroke: w)
             .fill(accent ? c : fill)
-            .stroke({ color: accent ? c : "black", width: fill === "transparent" ? stroke: 0 })
+            .stroke({ color: accent ? c : fg, width: fill === "transparent" ? stroke: 0 })
             .center(w * x, w * y);
     }
 }
@@ -111,7 +111,7 @@ function dots() {
         const y = i % 3;
         const offset = y === 1 ? 1 : 0;
         dot(g, x * 2 + offset, y * 2, w, {
-            fill: bin[i] ? "black" : "transparent",
+            fill: bin[i] ? fg : "transparent",
             accent,
             round: i % 5 === 0,
         });
@@ -151,7 +151,7 @@ function caveat() {
         const space = i === 0 ? 2.5 : 0
         g.text(lines[i])
             .font({ family: "Conduit", size: fs })
-            .fill({ color: "black" })
+            .fill({ color: fg })
             .x(-50 + space).y(-50 + i * fs * 1.1)
             .attr({ "letter-spacing": spacing[i] });
     }
@@ -159,7 +159,7 @@ function caveat() {
         .transform({ rotate: 90, origin: {x: -50, y: -50}})
         .x(-7)
         .y(-70.1);
-    asterisk(-31, -6.2, 1 / 5, "black");
+    asterisk(-31, -6.2, 1 / 5, fg);
 }
 
 function prescription() {
@@ -169,7 +169,7 @@ function prescription() {
         add.tspan(" daily,");
     })
         .font({ family: "Conduit", size: 12.5 })
-        .fill("black")
+        .fill(fg)
         .x(-19)
         .y(-8.5)
 
@@ -181,7 +181,7 @@ function prescription() {
         .fill(c)
         .x(-19)
         .y(3.5)
-    asterisk(41.5, 7.7, 0.4, "black")
+    asterisk(41.5, 7.7, 0.4, fg)
 }
 
 function codestar() {

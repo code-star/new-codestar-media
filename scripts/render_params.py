@@ -42,8 +42,12 @@ def render_div(html_file, output_png, div_id, ratio):
     asyncio.get_event_loop().run_until_complete(render_div_as_png(html_file, output_png, div_id, ratio))
 
 
-
 def render_params(json_path):
+    do_render_params(json_path, False)
+    do_render_params(json_path, True)
+
+
+def do_render_params(json_path, is_dark=False):
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_dir = Path(temp_dir)
         docs_src = Path("./docs")
@@ -58,7 +62,7 @@ def render_params(json_path):
             params = json.load(f)
 
         params["animate"] = False
-        params["dark"] = False
+        params["dark"] = is_dark
 
         js_content = scripts_file.read_text()
         new_params_line = f"const params = {json.dumps(params)};"
@@ -72,8 +76,10 @@ def render_params(json_path):
         renders_dir = Path("./renders")
         renders_dir.mkdir(exist_ok=True)
 
-        output_png = renders_dir / (params["name"] + "_front.png")
-        output_png_2 = renders_dir / (params["name"] + "_back.png")
+        dark_suffix = "_dark" if is_dark else ""
+
+        output_png = renders_dir / (params["name"] + "_front" + dark_suffix + ".png")
+        output_png_2 = renders_dir / (params["name"] + "_back" + dark_suffix + ".png")
         # TODO: Also copy a correctly colored version of the back design
 
         render_div(docs_dst / "index.html", output_png, div_id="star", ratio=1.1)
