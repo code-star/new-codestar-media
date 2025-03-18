@@ -10,15 +10,30 @@
 To install the Python 3 dependencies, run:
 
 ```sh
-pip install -r scripts/requirements.txt
+brew install poetry
+poetry install
 ```
 
-## Regenerating
+## Generating hoodie visuals
+
+To generate the hoodie templates, run:
+
+```sh
+poetry run python scripts/render_params.py templates
+```
+
+To generate just one template, run:
+
+```sh
+poetry run python scripts/render_params.py templates/name.json
+```
+
+## Regenerating resources
 
 To re-generate all the logos (if the master logo was modified), run:
 
 ```sh
 rm -rf logos
-python scripts/process.py
-python scripts/convert.py
+poetry run python scripts/process.py
+poetry run python scripts/convert.py
 ```
