@@ -1,5 +1,8 @@
 import {Pane} from 'https://cdn.jsdelivr.net/npm/tweakpane@4.0.3/dist/tweakpane.min.js';
 
+const drawFront = SVG().addTo("#front");
+drawFront.viewbox("-50 -50 100 110");
+
 const draw = SVG().addTo("#star");
 draw.viewbox("-50 -50 100 110");
 
@@ -23,7 +26,7 @@ const default_params = {
     ion_probability: 0.33,
     particle_density: 0.8,
     arc_probability: 0.3,
-    animate: true,
+    animate: false,
     dark: false,
     seed: 1337,
     name: "<YOUR NAME>",
@@ -113,7 +116,8 @@ const f3 = pane.addFolder({
   title: "Miscellaneous",
 });
 
-f3.addBinding(params, "animate", { label: "Animate" });
+// Disabled for hoodies
+// f3.addBinding(params, "animate", { label: "Animate" });
 
 f3.addBinding(params, "dark", { label: "Dark mode" });
 
@@ -204,10 +208,11 @@ const colors = [
 ];
 
 const bgcolor = "#f1e7da";
+const bgcolorDark = "black";
 
 const c = () => params.color < 0 ? colors[random] : colors[params.color];
 
-const b = () => params.dark ? bgcolor : "black";
+const b = () => params.dark ? bgcolor : bgcolorDark;
 
 function crosshairs() {
     draw.line(-100, 0, 100, 0).stroke({ color: "black", width: 0.1 });
@@ -336,6 +341,15 @@ function logo() {
     return g;
 }
 
+function logoFront() {
+    const g = drawFront.group();
+    g.text("c  de.star")
+        .font({ family: "Righteous", size: 3 })
+        .fill({ color: b() })
+        .center(14, -8);
+    return g;
+}
+
 function animate(g) {
     if (!params.animate) return g;
     g.animate({
@@ -410,6 +424,7 @@ function codestar() {
 
     asterisk(0, 0);
     logo();
+    logoFront();
     // crosshairs();
     animate(asterisk(-20.3, 45.5));
     
@@ -424,7 +439,7 @@ function codestar() {
     
     const text2 = `i${Math.floor(params.ion_probability * 100)}-d${Math.floor(params.particle_density * 100)}-a${Math.floor(params.arc_probability * 100)}`;
 
-    const text3 = "cs-t2xh-2024";
+    const text3 = `cs-t2xh-2016-${params.name.toLowerCase()[0]}`;
     
     name = text1 + "-" + text2;
     

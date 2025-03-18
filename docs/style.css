@@ -1,63 +1,105 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 
-@import url('https://fonts.cdnfonts.com/css/conduit-itc-medium');
+@import url("https://fonts.cdnfonts.com/css/conduit-itc-medium");
 
 @font-face {
-    font-family: "Conduit";
-    src: url("./fonts/ConduitITCStd.woff") format("woff");
+  font-family: "Conduit";
+  src: url("./fonts/ConduitITCStd.woff") format("woff");
 }
 
 @font-face {
-    font-family: "Conduit";
-    font-weight: bold;
-    src: url("./fonts/ConduitITCStd-Bold.woff") format("woff");
+  font-family: "Conduit";
+  font-weight: bold;
+  src: url("./fonts/ConduitITCStd-Bold.woff") format("woff");
 }
 
 :root {
-    --tp-base-font-family: "Conduit ITC Medium";
-    --tp-base-background-color: hsla(0, 0%, 10%, 0.80);
-    --tp-base-shadow-color: hsla(0, 0%, 0%, 0.2);
-    --tp-button-background-color: hsla(0, 0%, 80%, 1.00);
-    --tp-button-background-color-active: hsla(0, 0%, 100%, 1.00);
-    --tp-button-background-color-focus: hsla(0, 0%, 95%, 1.00);
-    --tp-button-background-color-hover: hsla(0, 0%, 85%, 1.00);
-    --tp-button-foreground-color: hsla(0, 0%, 0%, 0.80);
-    --tp-container-background-color: hsla(0, 0%, 0%, 0.30);
-    --tp-container-background-color-active: hsla(0, 0%, 0%, 0.60);
-    --tp-container-background-color-focus: hsla(0, 0%, 0%, 0.50);
-    --tp-container-background-color-hover: hsla(0, 0%, 0%, 0.40);
-    --tp-container-foreground-color: hsla(0, 0%, 100%, 0.50);
-    --tp-groove-foreground-color: hsla(0, 0%, 0%, 0.20);
-    --tp-input-background-color: hsla(0, 0%, 0%, 0.30);
-    --tp-input-background-color-active: hsla(0, 0%, 0%, 0.60);
-    --tp-input-background-color-focus: hsla(0, 0%, 0%, 0.50);
-    --tp-input-background-color-hover: hsla(0, 0%, 0%, 0.40);
-    --tp-input-foreground-color: hsla(0, 0%, 100%, 0.50);
-    --tp-label-foreground-color: hsla(0, 0%, 100%, 0.50);
-    --tp-monitor-background-color: hsla(0, 0%, 0%, 0.30);
-    --tp-monitor-foreground-color: hsla(0, 0%, 100%, 0.30);
+  --tp-base-font-family: "Conduit ITC Medium";
+  --tp-base-background-color: hsla(0, 0%, 10%, 0.8);
+  --tp-base-shadow-color: hsla(0, 0%, 0%, 0.2);
+  --tp-button-background-color: hsla(0, 0%, 80%, 1);
+  --tp-button-background-color-active: hsla(0, 0%, 100%, 1);
+  --tp-button-background-color-focus: hsla(0, 0%, 95%, 1);
+  --tp-button-background-color-hover: hsla(0, 0%, 85%, 1);
+  --tp-button-foreground-color: hsla(0, 0%, 0%, 0.8);
+  --tp-container-background-color: hsla(0, 0%, 0%, 0.3);
+  --tp-container-background-color-active: hsla(0, 0%, 0%, 0.6);
+  --tp-container-background-color-focus: hsla(0, 0%, 0%, 0.5);
+  --tp-container-background-color-hover: hsla(0, 0%, 0%, 0.4);
+  --tp-container-foreground-color: hsla(0, 0%, 100%, 0.5);
+  --tp-groove-foreground-color: hsla(0, 0%, 0%, 0.2);
+  --tp-input-background-color: hsla(0, 0%, 0%, 0.3);
+  --tp-input-background-color-active: hsla(0, 0%, 0%, 0.6);
+  --tp-input-background-color-focus: hsla(0, 0%, 0%, 0.5);
+  --tp-input-background-color-hover: hsla(0, 0%, 0%, 0.4);
+  --tp-input-foreground-color: hsla(0, 0%, 100%, 0.5);
+  --tp-label-foreground-color: hsla(0, 0%, 100%, 0.5);
+  --tp-monitor-background-color: hsla(0, 0%, 0%, 0.3);
+  --tp-monitor-foreground-color: hsla(0, 0%, 100%, 0.3);
 }
 
 body {
-    margin: 0;
-    background-color: #f1e7da;
+  margin: 0;
+  background-color: #cbcac8;
+  /* background-color: #f1e7da; */
 }
 
 body.dark {
-    background-color: black;
+  background-color: #2c3544;
 }
 
-#star, #back {
-    max-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: left;
+.container {
+  display: flex;
+  gap: 2rem;
 }
 
-#star svg, #back svg {
+#star,
+#back,
+#front {
+  max-height: calc(100vh - 2px);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  border: 1px solid black;
+}
+
+#star svg,
+#back svg,
+#front svg {
+  height: 100vh;
+}
+
+#star svg {
+    height: 60vh;
+    margin-left: 11.3vw;
+}
+
+#star {
+    width: calc(50vw - 2rem);
     height: 100vh;
 }
 
+#front {
+  background-image: url("./images/premium-urban-front.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body.dark #front {
+  background-image: url("./images/zip-blue-front.png");
+}
+
+#star {
+  background-image: url("./images/premium-urban-back.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body.dark #star {
+  background-image: url("./images/zip-blue-back.png");
+}
+
 .tp-dfwv {
-    width: 300px !important;
+  width: 300px !important;
 }
