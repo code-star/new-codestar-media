@@ -71,7 +71,7 @@ const star_names = {
   Random: -1,
 };
 
-f1.addBinding(params, "star_type", {
+const starTypeParam = f1.addBinding(params, "star_type", {
   label: "Star type",
   options: star_names,
 });
@@ -84,21 +84,21 @@ const f2 = pane.addFolder({
   title: "Composition",
 });
 
-f2.addBinding(params, "ion_probability", {
+const ionParam = f2.addBinding(params, "ion_probability", {
   min: 0,
   max: 1.0,
   step: 0.01,
   label: "Ion probability",
 });
 
-f2.addBinding(params, "particle_density", {
+const particleParam = f2.addBinding(params, "particle_density", {
   min: 0,
   max: 1.0,
   step: 0.01,
   label: "Density",
 });
 
-f2.addBinding(params, "arc_probability", {
+const arcParam = f2.addBinding(params, "arc_probability", {
   min: 0,
   max: 1.0,
   step: 0.01,
@@ -120,7 +120,7 @@ const f3 = pane.addFolder({
 // Disabled for hoodies
 // f3.addBinding(params, "animate", { label: "Animate" });
 
-f3.addBinding(params, "dark", { label: "Dark mode" });
+const darkParam = f3.addBinding(params, "dark", { label: "Dark mode" });
 
 const nameParam = f3.addBinding(params, "name", { label: "Name" });
 
@@ -206,9 +206,28 @@ downloadParams.on("click", () => {
 
 applyTemplateButton.on("click", () => {
   const template = JSON.parse(params.template);
-  // {"color":5,"star_type":1,"ion_probability":0.42,"particle_density":0.8,"arc_probability":0.37,"animate":false,"dark":false,"seed":64556,"name":"hamza"}
+
   params.color = template.color;
   colorParam.refresh();
+
+  params.star_type = template.star_type;
+  starTypeParam.refresh();
+
+  params.ion_probability = template.ion_probability;
+  ionParam.refresh();
+
+  params.particle_density = template.particle_density;
+  particleParam.refresh();
+
+  params.arc_probability = template.arc_probability;
+  arcParam.refresh();
+
+  params.dark = template.dark;
+  darkParam.refresh();
+
+  params.seed = template.seed;
+  seedParam.refresh();
+
   params.name = template.name;
   nameParam.refresh();
   codestar();
