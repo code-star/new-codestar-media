@@ -329,10 +329,10 @@ function logo() {
         .font({ family: "Righteous", size: 14 })
         .fill({ color: b() })
         .center(0, 44);
-    g.text("a sopra steria team")
-        .font({ family: "Conduit ITC Medium", size: 4.3 })
-        .fill({ color: b() })
-        .center(16, 52);
+    // g.text("a sopra steria team")
+    //     .font({ family: "Conduit ITC Medium", size: 4.3 })
+    //     .fill({ color: b() })
+    //     .center(16, 52);
     return g;
 }
 
@@ -430,16 +430,16 @@ function codestar() {
     
     const a = ((random * random2) % 6) * 60;
     
-    if (star_name === "Neutron star") {
-        sign(r, text1).rotate(a);
-        sign(r + 0.5, text2).rotate(-120 + a);
-        sign(r + 0.5, text3).rotate(-240 + a);
-    } else if (star_name === "Supernova") {
-        sign(r, text1 + "-" + text2 + "-" + text3).rotate(a);
-    } else {
-        sign(r, text1 + "-" + text2).rotate(a);
-        sign(r + 0.5, text3).rotate(180 + a);
-    }
+    // if (star_name === "Neutron star") {
+    //     sign(r, text1).rotate(a);
+    //     sign(r + 0.5, text2).rotate(-120 + a);
+    //     sign(r + 0.5, text3).rotate(-240 + a);
+    // } else if (star_name === "Supernova") {
+    //     sign(r, text1 + "-" + text2 + "-" + text3).rotate(a);
+    // } else {
+    //     sign(r, text1 + "-" + text2).rotate(a);
+    //     sign(r + 0.5, text3).rotate(180 + a);
+    // }
 }
 
 codestar();

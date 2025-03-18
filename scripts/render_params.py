@@ -44,7 +44,7 @@ def render_div(html_file, output_png, div_id, ratio):
 
 def render_params(json_path):
     do_render_params(json_path, False)
-    do_render_params(json_path, True)
+    # do_render_params(json_path, True)
 
 
 def do_render_params(json_path, is_dark=False):
@@ -62,7 +62,7 @@ def do_render_params(json_path, is_dark=False):
             params = json.load(f)
 
         params["animate"] = False
-        params["dark"] = is_dark
+        # params["dark"] = is_dark
 
         js_content = scripts_file.read_text()
         new_params_line = f"const params = {json.dumps(params)};"
@@ -76,7 +76,7 @@ def do_render_params(json_path, is_dark=False):
         renders_dir = Path("./renders")
         renders_dir.mkdir(exist_ok=True)
 
-        dark_suffix = "_dark" if is_dark else ""
+        dark_suffix = "_dark" if params["dark"] else ""
 
         output_png = renders_dir / (params["name"] + "_front" + dark_suffix + ".png")
         output_png_2 = renders_dir / (params["name"] + "_back" + dark_suffix + ".png")
