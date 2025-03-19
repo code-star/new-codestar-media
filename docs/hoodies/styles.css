@@ -18,6 +18,10 @@ div.row {
   border-bottom: 1px solid black;
 }
 
+div.variant {
+  width: 270px;
+}
+
 div.row div.variant::before {
   content: "premium-hoodie urban-grey";
 }
@@ -26,8 +30,12 @@ div.row.hoodie.blue div.variant::before {
   content: "hoodie navy";
 }
 
+div.row.zip.offwhite div.variant::before {
+  content: "zipped-hoodie-organic off white";
+}
+
 div.row.zip.blue div.variant::before {
-  content: "zipped-hoodie donker blauw";
+  content: "zipped-hoodie-organic donker blauw";
 }
 
 div.front,
@@ -52,6 +60,15 @@ div.hoodie.blue div.front {
 
 div.hoodie.blue div.back {
   background-image: url("./images/hoodie-blue-back.png");
+}
+
+div.zip.offwhite div.front {
+  background-image: url("./images/zip-offwhite-front.png");
+}
+
+div.zip.offwhite div.back {
+  background-image: url("./images/zip-offwhite-back.png");
+  /* background-image: url("./images/zip-grey-back.png"); */
 }
 
 div.zip.blue div.front {
