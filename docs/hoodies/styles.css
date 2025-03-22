@@ -62,6 +62,14 @@ div.hoodie.blue div.back {
   background-image: url("./images/hoodie-blue-back.png");
 }
 
+div.zip-ladies.offwhite div.front {
+  background-image: url("./images/zip-ladies-offwhite-front.png");
+}
+
+div.zip-ladies.offwhite div.back {
+  background-image: url("./images/zip-ladies-offwhite-back.png");
+}
+
 div.zip.offwhite div.front {
   background-image: url("./images/zip-offwhite-front.png");
 }
