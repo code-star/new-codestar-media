@@ -38,6 +38,10 @@ div.row.zip.blue div.variant::before {
   content: "zipped-hoodie-organic donker blauw";
 }
 
+div.row.zip-ladies.blue div.variant::before {
+  content: "zipped-hoodie-dames-organic donker blauw";
+}
+
 div.front,
 div.back {
   background-repeat: no-repeat;
@@ -60,6 +64,14 @@ div.hoodie.blue div.front {
 
 div.hoodie.blue div.back {
   background-image: url("./images/hoodie-blue-back.png");
+}
+
+div.zip-ladies.blue div.front {
+  background-image: url("./images/zip-ladies-blue-front.png");
+}
+
+div.zip-ladies.blue div.back {
+  background-image: url("./images/zip-ladies-blue-back.png");
 }
 
 div.zip-ladies.offwhite div.front {
@@ -95,7 +107,8 @@ div.row.hoodie div.front img {
 }
 
 /* div.zip  */
-div.row.zip div.front img {
+div.row.zip div.front img,
+div.row.zip-ladies div.front img {
   position: absolute;
   left: 245px;
   top: 140px;
