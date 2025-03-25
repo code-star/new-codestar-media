@@ -63,13 +63,17 @@ def do_render_params(json_path, is_dark=False):
 
         params["animate"] = False
         params["dark"] = is_dark
+        params["tagline"] = True
 
         js_content = scripts_file.read_text()
         new_params_line = f"const params = {json.dumps(params)};"
         js_content = js_content.replace("const params = { ...default_params };", new_params_line)
         scripts_file.write_text(js_content)
 
+        params["tagline"] = False
+
         js_content = back_file.read_text()
+        new_params_line = f"const params = {json.dumps(params)};"
         js_content = js_content.replace("const params = { ...default_params };", new_params_line)
         back_file.write_text(js_content)
 
@@ -83,7 +87,7 @@ def do_render_params(json_path, is_dark=False):
         # TODO: Also copy a correctly colored version of the back design
 
         render_div(docs_dst / "index.html", output_png, div_id="star", ratio=1.1)
-        render_div(docs_dst / "back.html", output_png_2, div_id="back", ratio=1.25)
+        render_div(docs_dst / "back.html", output_png_2, div_id="back", ratio=1.15)
 
 
 def process_path(path):

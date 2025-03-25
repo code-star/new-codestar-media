@@ -27,6 +27,7 @@ const default_params = {
     dark: false,
     seed: 1337,
     name: "<YOUR NAME>",
+    tagline: true,
 };
 
 const params = { ...default_params };
@@ -323,16 +324,18 @@ function circle(radius, black) {
         });
 }
 
-function logo() {
+function logo(tagline) {
     const g = draw.group();
     g.text("c  de.star")
         .font({ family: "Righteous", size: 14 })
         .fill({ color: b() })
         .center(0, 44);
-    g.text("a sopra steria team")
-        .font({ family: "Conduit ITC Medium", size: 4.3 })
-        .fill({ color: b() })
-        .center(16, 52);
+    if (tagline) {
+        g.text("a sopra steria team")
+            .font({ family: "Conduit ITC Medium", size: 4.3 })
+            .fill({ color: b() })
+            .center(16, 52);        
+    }
     return g;
 }
 
@@ -409,7 +412,7 @@ function codestar() {
     }
 
     asterisk(0, 0);
-    logo();
+    logo(params.tagline);
     // crosshairs();
     animate(asterisk(-20.3, 45.5));
     

@@ -19,7 +19,7 @@ poetry install
 To generate the hoodie templates, run:
 
 ```sh
-poetry run python scripts/render_params.py templates
+poetry run python scripts/render_hoodies.py templates
 ```
 
 To generate just one template, run:
