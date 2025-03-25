@@ -53,10 +53,10 @@ function logo() {
         .font({ family: "Righteous", size: 19 })
         .fill({ color: fg })
         .center(0, -42);
-    g.text("a sopra steria team")
-        .font({ family: "Conduit ITC Medium", size: 8 })
-        .fill({ color: fg })
-        .center(14.3, -31);
+    // g.text("a sopra steria team")
+    //     .font({ family: "Conduit ITC Medium", size: 8 })
+    //     .fill({ color: fg })
+    //     .center(14.3, -31);
     return g;
 }
 
@@ -184,12 +184,22 @@ function prescription() {
     asterisk(41.5, 7.7, 0.4, fg)
 }
 
+function sopra() {
+    const g = draw.group();
+    g.text("sopra steria")
+        .font({ family: "Righteous", size: 12 })
+        .fill({ color: fg })
+        .center(15, 65);
+    return g;
+}
+
 function codestar() {
     logo();
     asterisk(-27.5, -40.1, 1.26);
     dots();
     caveat();
     prescription();
+    sopra();
 }
 
 codestar();

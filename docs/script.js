@@ -329,10 +329,10 @@ function logo() {
         .font({ family: "Righteous", size: 14 })
         .fill({ color: b() })
         .center(0, 44);
-    // g.text("a sopra steria team")
-    //     .font({ family: "Conduit ITC Medium", size: 4.3 })
-    //     .fill({ color: b() })
-    //     .center(16, 52);
+    g.text("a sopra steria team")
+        .font({ family: "Conduit ITC Medium", size: 4.3 })
+        .fill({ color: b() })
+        .center(16, 52);
     return g;
 }
 
