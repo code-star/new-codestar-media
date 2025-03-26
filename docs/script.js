@@ -437,16 +437,17 @@ function codestar() {
     
     const a = ((random * random2) % 6) * 60;
     
-    // if (star_name === "Neutron star") {
-    //     sign(r, text1).rotate(a);
-    //     sign(r + 0.5, text2).rotate(-120 + a);
-    //     sign(r + 0.5, text3).rotate(-240 + a);
-    // } else if (star_name === "Supernova") {
-    //     sign(r, text1 + "-" + text2 + "-" + text3).rotate(a);
-    // } else {
-    //     sign(r, text1 + "-" + text2).rotate(a);
-    //     sign(r + 0.5, text3).rotate(180 + a);
-    // }
+    // Text around the stars
+    if (star_name === "Neutron star") {
+        sign(r, text1).rotate(a);
+        sign(r + 0.5, text2).rotate(-120 + a);
+        sign(r + 0.5, text3).rotate(-240 + a);
+    } else if (star_name === "Supernova") {
+        sign(r, text1 + "-" + text2 + "-" + text3).rotate(a);
+    } else {
+        sign(r, text1 + "-" + text2).rotate(a);
+        sign(r + 0.5, text3).rotate(180 + a);
+    }
 }
 
 codestar();
