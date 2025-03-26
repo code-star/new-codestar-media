@@ -118,7 +118,7 @@ def do_render_params(json_path, is_dark=False):
             params = json.load(f)
 
         params["animate"] = False
-        params["dark"] = is_dark
+        # params["dark"] = is_dark
         params["tagline"] = True
 
         js_content = scripts_file.read_text()
@@ -136,7 +136,7 @@ def do_render_params(json_path, is_dark=False):
         renders_dir = Path("./renders")
         renders_dir.mkdir(exist_ok=True)
 
-        dark_suffix = "_dark" if params["dark"] else ""
+        dark_suffix = "" # "_dark" if params["dark"] else ""
 
         output_png = renders_dir / (params["name"] + "_front" + dark_suffix + ".png")
         output_png_2 = renders_dir / (params["name"] + "_back" + dark_suffix + ".png")
