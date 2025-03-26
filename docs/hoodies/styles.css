@@ -121,3 +121,17 @@ div.back img {
   top: 140px;
   width: 190px;
 }
+
+div.row div.size {
+  display: none;
+}
+
+@media print {
+  div.row {
+    page-break-after: always;
+  }
+
+  div.row div.size {
+    /* display: block; */
+  }
+}
