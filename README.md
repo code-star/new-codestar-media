@@ -28,6 +28,8 @@ To generate just one template, run:
 poetry run python scripts/render_params.py templates/name.json
 ```
 
+For the SVG generation to work, you need to install Inkscape, and install all the fonts in `/fonts/`.
+
 ## Regenerating resources
 
 To re-generate all the logos (if the master logo was modified), run:

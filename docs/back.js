@@ -166,9 +166,9 @@ function caveat(dx, dy) {
 
 function prescription(dx, dy) {
     draw.text(function (add) {
-        add.tspan("one ");
-        add.tspan("byte").attr({ "font-weight": "bold "});
-        add.tspan(" daily,");
+        add.tspan("one ").attr({ "white-space": "pre" });
+        add.tspan("byte").attr({ "font-weight": "bold"});
+        add.tspan(" daily,").attr({ "white-space": "pre" });
     })
         .font({ family: "Conduit", size: 12.5 })
         .fill(fg)
@@ -176,8 +176,8 @@ function prescription(dx, dy) {
         .y(-8.5 + dy);
 
     draw.text(function (add) {
-        add.tspan("no ");
-        add.tspan("side effects!").attr({ "font-weight": "bold "});
+        add.tspan("no ").attr({ "white-space": "pre" });
+        add.tspan("side effects!").attr({ "font-weight": "bold"});
     })
         .font({ family: "Conduit", size: 10 })
         .fill(c)

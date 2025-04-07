@@ -6,10 +6,35 @@ from pathlib import Path
 import json
 import tempfile
 import asyncio
+import subprocess
 from pyppeteer import launch
 
 
 chrome_binary_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+inkscape_path = "/Applications/Inkscape.app/Contents/MacOS/inkscape"
+
+
+def post_process_svg(svg_path):
+    cmd = [
+        inkscape_path,
+        "--export-plain-svg",
+        "--export-text-to-path",
+        "--export-type=svg",
+        f"--export-filename={svg_path}",
+        str(svg_path)
+    ]
+
+    subprocess.run(cmd, capture_output=True, text=True, check=True)
+
+
+def export_svg(svg_content, output_path):
+    cleaned_svg = svg_content.replace('&nbsp;', '&#xA0;')
+    cleaned_svg = cleaned_svg.replace('"Conduit"', '"ConduitITCStd"')
+
+    svg_path = output_path.with_suffix('.svg')
+    svg_path.write_text(cleaned_svg, encoding='utf-8')
+    post_process_svg(svg_path)
+    print(f"SVG saved to {svg_path}")
 
 
 async def render_div_as_png(html_path, output_path, div_id, ratio):
@@ -28,15 +53,36 @@ async def render_div_as_png(html_path, output_path, div_id, ratio):
     element = await page.querySelector(f'#{div_id}')
 
     if element:
+        # Save PNG
         await element.screenshot({
             'path': output_path,
             'omitBackground': True,
         })
         print(f"Rendered {div_id} saved to {output_path}")
+
+        # Save SVG
+        svg_element = await element.querySelector('svg')
+        if svg_element:
+            svg_content = await page.evaluate('(el) => el.outerHTML', svg_element)
+            export_svg(svg_content, output_path)
+
+            if "front" in str(output_path):
+                svg_content = await page.evaluate('''(el) => {
+                    const nodesToRemove = el.querySelectorAll('[font-size="2"]');
+                    nodesToRemove.forEach(node => node.remove());
+                    return el.outerHTML;
+                }
+                ''', svg_element)
+                export_svg(svg_content, output_path.with_name(f"{output_path.stem}_zipper{output_path.suffix}"))
+
+        else:
+            print(f"No <svg> found inside #{div_id}")
+
     else:
         print(f"Element #{div_id} not found on page {html_path}")
 
     await browser.close()
+
 
 def render_div(html_file, output_png, div_id, ratio):
     asyncio.get_event_loop().run_until_complete(render_div_as_png(html_file, output_png, div_id, ratio))
