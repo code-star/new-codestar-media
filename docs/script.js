@@ -313,6 +313,7 @@ function circle(radius, black) {
         .circle(diameter)
         .center(0, 0)
         .fill("transparent")
+        .attr({ "style": "fill:none"})
         .stroke({
             color: black ? b() : c(),
             width: 2
@@ -361,6 +362,7 @@ function sign(r, text) {
              a ${r},${r} 0 1,0 -${r*2},0`
         )
         .fill("transparent")
+        .attr({ "style": "fill:none"})
         //.stroke({ color: c(), width: 0.2 })
         .text(text)
         .font({
