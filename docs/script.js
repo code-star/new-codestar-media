@@ -240,19 +240,19 @@ function beam(offset, length, branch, black) {
     let gap = 4 + 2 * Math.floor(rng() * 2);
 
     while (current_length + dash + 2 < length) {
-        dasharray += ` ${dash} ${gap}`;
+        dasharray += ` ${dash + 0.000001} ${gap}`;
         current_length += dash + 2 + gap + 2;
         dash = 2 * Math.floor(rng() * 2);
         gap = 4 + 2 * Math.floor(rng() * 2);
     }
-    dasharray += " 0 1000";
+    dasharray += " 0.000001 1000";
     // also randomly choose round or square
     return draw
         .line(0, 0, 100, 0)
         .stroke({ color: black ? b() : c(), width: 2 })
         .rotate(angle, 0, 0)
         .attr({
-            "stroke-dasharray": dasharray,
+            "stroke-dasharray": dasharray.trim(),
             "stroke-linecap": rng() < params.ion_probability ? "round" : "square"
         });
 }
@@ -295,7 +295,7 @@ function circle(radius, black) {
             } else {
                 const dash = rng() < params.particle_density;
                 if (dash || i == 0) {
-                    dasharray += ` 0 ${section}`;
+                    dasharray += ` 0.000001 ${section}`;
                 } else {
                     const previous = dasharray.trim().split(" ").map(Number);
                     previous[previous.length - 1] += section;
@@ -319,7 +319,7 @@ function circle(radius, black) {
             width: 2
         })
         .attr({
-            "stroke-dasharray": dasharray,
+            "stroke-dasharray": dasharray.trim(),
             "stroke-dashoffset": linecap == "butt" ? 1 : 0,
             "stroke-linecap": linecap
         });
