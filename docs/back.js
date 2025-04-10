@@ -204,6 +204,15 @@ function s2(x, y) {
     `);
 }
 
+// function sopra() {
+//     const g = draw.group();
+//     g.text("sopra steria")
+//         .font({ family: "Righteous", size: 12 })
+//         .fill({ color: fg })
+//         .center(15, 65);
+//     return g;
+// }
+
 function codestar() {
     logo(params.tagline);
     asterisk(-27.5, -40.1, 1.26);

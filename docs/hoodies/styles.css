@@ -1,0 +1,137 @@
+/* body {
+  margin: 0;
+  background-color: #cbcac8;
+  /* background-color: #f1e7da; * /
+}
+
+body.dark {
+  background-color: #2c3544;
+} */
+
+body {
+  font-family: sans-serif;
+}
+
+div.row {
+  display: flex;
+  gap: 2rem;
+  border-bottom: 1px solid black;
+}
+
+div.variant {
+  width: 270px;
+}
+
+div.row div.variant::before {
+  content: "premium-hoodie urban-grey";
+}
+
+div.row.hoodie.blue div.variant::before {
+  content: "hoodie navy";
+}
+
+div.row.zip.offwhite div.variant::before {
+  content: "zipped-hoodie-organic off white";
+}
+
+div.row.zip.blue div.variant::before {
+  content: "zipped-hoodie-organic donker blauw";
+}
+
+div.row.zip-ladies.blue div.variant::before {
+  content: "zipped-hoodie-dames-organic donker blauw";
+}
+
+div.front,
+div.back {
+  background-repeat: no-repeat;
+  height: 500px;
+  width: 500px;
+  position: relative;
+}
+
+div.front {
+  background-image: url("./images/premium-urban-front.png");
+}
+
+div.back {
+  background-image: url("./images/premium-urban-back.png");
+}
+
+div.hoodie.blue div.front {
+  background-image: url("./images/hoodie-blue-front.png");
+}
+
+div.hoodie.blue div.back {
+  background-image: url("./images/hoodie-blue-back.png");
+}
+
+div.zip-ladies.blue div.front {
+  background-image: url("./images/zip-ladies-blue-front.png");
+}
+
+div.zip-ladies.blue div.back {
+  background-image: url("./images/zip-ladies-blue-back.png");
+}
+
+div.zip-ladies.offwhite div.front {
+  background-image: url("./images/zip-ladies-offwhite-front.png");
+}
+
+div.zip-ladies.offwhite div.back {
+  background-image: url("./images/zip-ladies-offwhite-back.png");
+}
+
+div.zip.offwhite div.front {
+  background-image: url("./images/zip-offwhite-front.png");
+}
+
+div.zip.offwhite div.back {
+  background-image: url("./images/zip-offwhite-back.png");
+  /* background-image: url("./images/zip-grey-back.png"); */
+}
+
+div.zip.blue div.front {
+  background-image: url("./images/zip-blue-front.png");
+}
+
+div.zip.blue div.back {
+  background-image: url("./images/zip-blue-back.png");
+}
+
+div.row.hoodie div.front img {
+  position: absolute;
+  left: 170px;
+  top: 140px;
+  width: 150px;
+}
+
+/* div.zip  */
+div.row.zip div.front img,
+div.row.zip-ladies div.front img {
+  position: absolute;
+  left: 245px;
+  top: 140px;
+  width: 100px;
+}
+
+div.back img {
+  position: absolute;
+  left: 150px;
+  top: 140px;
+  width: 190px;
+}
+
+div.row div.size {
+  display: none;
+}
+
+@media print {
+  div.row {
+    page-break-after: always;
+  }
+
+  div.row div.size {
+    /* display: block; */
+  }
+}
