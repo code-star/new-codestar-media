@@ -231,6 +231,8 @@ function asterisk(x, y) {
     return g;
 }
 
+const epsilon = 0.002;
+
 function beam(offset, length, branch, black) {
     const angle = -60 + 60 * branch;
     let dasharray = `0 ${offset + 1}`;
@@ -240,12 +242,12 @@ function beam(offset, length, branch, black) {
     let gap = 4 + 2 * Math.floor(rng() * 2);
 
     while (current_length + dash + 2 < length) {
-        dasharray += ` ${dash + 0.000001} ${gap}`;
+        dasharray += ` ${dash + epsilon} ${gap}`;
         current_length += dash + 2 + gap + 2;
         dash = 2 * Math.floor(rng() * 2);
         gap = 4 + 2 * Math.floor(rng() * 2);
     }
-    dasharray += " 0.000001 1000";
+    dasharray += ` ${epsilon} 1000`;
     // also randomly choose round or square
     return draw
         .line(0, 0, 100, 0)
@@ -295,7 +297,7 @@ function circle(radius, black) {
             } else {
                 const dash = rng() < params.particle_density;
                 if (dash || i == 0) {
-                    dasharray += ` 0.000001 ${section}`;
+                    dasharray += ` ${epsilon} ${section}`;
                 } else {
                     const previous = dasharray.trim().split(" ").map(Number);
                     previous[previous.length - 1] += section;

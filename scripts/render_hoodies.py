@@ -14,7 +14,7 @@ chrome_binary_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chro
 inkscape_path = "/Applications/Inkscape.app/Contents/MacOS/inkscape"
 
 
-def post_process_svg(svg_path):
+def post_process_svg(svg_path, is_front=False):
     cmd = [
         inkscape_path,
         "--export-plain-svg",
@@ -26,14 +26,23 @@ def post_process_svg(svg_path):
 
     subprocess.run(cmd, capture_output=True, text=True, check=True)
 
+    if is_front:
+        cmd = [
+            inkscape_path,
+            f'--actions=select-all;object-stroke-to-path;export-filename:{svg_path};export-do',
+            str(svg_path)
+        ]
 
-def export_svg(svg_content, output_path):
+        subprocess.run(cmd, capture_output=True, text=True, check=True)
+
+
+def export_svg(svg_content, output_path, is_front=False):
     cleaned_svg = svg_content.replace('&nbsp;', '&#xA0;')
     cleaned_svg = cleaned_svg.replace('"Conduit"', '"ConduitITCStd"')
 
     svg_path = output_path.with_suffix('.svg')
     svg_path.write_text(cleaned_svg, encoding='utf-8')
-    post_process_svg(svg_path)
+    post_process_svg(svg_path, is_front=is_front)
     print(f"SVG saved to {svg_path}")
 
 
@@ -64,16 +73,17 @@ async def render_div_as_png(html_path, output_path, div_id, ratio):
         svg_element = await element.querySelector('svg')
         if svg_element:
             svg_content = await page.evaluate('(el) => el.outerHTML', svg_element)
-            export_svg(svg_content, output_path)
+            is_front = "front" in str(output_path)
+            export_svg(svg_content, output_path, is_front=is_front)
 
-            if "front" in str(output_path):
+            if is_front:
                 svg_content = await page.evaluate('''(el) => {
                     const nodesToRemove = el.querySelectorAll('[font-size="2"]');
                     nodesToRemove.forEach(node => node.remove());
                     return el.outerHTML;
                 }
                 ''', svg_element)
-                export_svg(svg_content, output_path.with_name(f"{output_path.stem}_zipper{output_path.suffix}"))
+                export_svg(svg_content, output_path.with_name(f"{output_path.stem}_zipper{output_path.suffix}"), is_front=is_front)
 
         else:
             print(f"No <svg> found inside #{div_id}")
