@@ -437,6 +437,7 @@ function codestar() {
     
     const a = ((random * random2) % 6) * 60;
     
+    // Text around the stars
     if (star_name === "Neutron star") {
         sign(r, text1).rotate(a);
         sign(r + 0.5, text2).rotate(-120 + a);

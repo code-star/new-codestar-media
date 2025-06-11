@@ -46,7 +46,7 @@ def export_svg(svg_content, output_path, is_front=False):
     print(f"SVG saved to {svg_path}")
 
 
-async def render_div_as_png(html_path, output_path, div_id, ratio):
+async def render_div_as_png(html_path, output_path, div_id, ratio, zipper=False):
     browser = await launch(headless=True, args=['--disable-web-security'])
     page = await browser.newPage()
 
@@ -74,9 +74,10 @@ async def render_div_as_png(html_path, output_path, div_id, ratio):
         if svg_element:
             svg_content = await page.evaluate('(el) => el.outerHTML', svg_element)
             is_front = "front" in str(output_path)
-            export_svg(svg_content, output_path, is_front=is_front)
+            if not zipper:
+                export_svg(svg_content, output_path, is_front=is_front)
 
-            if is_front:
+            if is_front and zipper:
                 svg_content = await page.evaluate('''(el) => {
                     const nodesToRemove = el.querySelectorAll('[font-size="2"]');
                     nodesToRemove.forEach(node => node.remove());
@@ -94,13 +95,13 @@ async def render_div_as_png(html_path, output_path, div_id, ratio):
     await browser.close()
 
 
-def render_div(html_file, output_png, div_id, ratio):
-    asyncio.get_event_loop().run_until_complete(render_div_as_png(html_file, output_png, div_id, ratio))
+def render_div(html_file, output_png, div_id, ratio, zipper=False):
+    asyncio.get_event_loop().run_until_complete(render_div_as_png(html_file, output_png, div_id, ratio, zipper))
 
 
 def render_params(json_path):
     do_render_params(json_path, False)
-    do_render_params(json_path, True)
+    # do_render_params(json_path, True)
 
 
 def do_render_params(json_path, is_dark=False):
@@ -118,7 +119,7 @@ def do_render_params(json_path, is_dark=False):
             params = json.load(f)
 
         params["animate"] = False
-        params["dark"] = is_dark
+        # params["dark"] = is_dark
         params["tagline"] = True
 
         js_content = scripts_file.read_text()
@@ -136,13 +137,15 @@ def do_render_params(json_path, is_dark=False):
         renders_dir = Path("./renders")
         renders_dir.mkdir(exist_ok=True)
 
-        dark_suffix = "_dark" if is_dark else ""
+        dark_suffix = "" # "_dark" if params["dark"] else ""
 
         output_png = renders_dir / (params["name"] + "_front" + dark_suffix + ".png")
         output_png_2 = renders_dir / (params["name"] + "_back" + dark_suffix + ".png")
         # TODO: Also copy a correctly colored version of the back design
 
-        render_div(docs_dst / "index.html", output_png, div_id="star", ratio=1.1)
+        zipper = params["zipper"] if "zipper" in params else False
+
+        render_div(docs_dst / "index.html", output_png, div_id="star", ratio=1.1, zipper=zipper)
         render_div(docs_dst / "back.html", output_png_2, div_id="back", ratio=1.15)
 
 
