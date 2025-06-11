@@ -25,7 +25,7 @@ poetry run python scripts/render_hoodies.py templates
 To generate just one template, run:
 
 ```sh
-poetry run python scripts/render_params.py templates/name.json
+poetry run python scripts/render_hoodies.py templates/name.json
 ```
 
 For the SVG generation to work, you need to install Inkscape, and install all the fonts in `/fonts/`.

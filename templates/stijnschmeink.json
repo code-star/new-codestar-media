@@ -1,1 +1,12 @@
-{"color":3,"star_type":4,"ion_probability":0.6,"particle_density":0.48,"arc_probability":0.41000000000000003,"animate":true,"dark":false,"seed":16101989,"name":"stijnschmeink"}
+{
+  "color": 3,
+  "star_type": 4,
+  "ion_probability": 0.6,
+  "particle_density": 0.48,
+  "arc_probability": 0.41000000000000003,
+  "animate": false,
+  "dark": false,
+  "seed": 16101989,
+  "name": "stijnschmeink",
+  "tagline": true
+}
